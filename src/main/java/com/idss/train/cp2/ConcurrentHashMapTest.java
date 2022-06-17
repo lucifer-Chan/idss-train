@@ -15,6 +15,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 /**
+ * 有一个含900个元素的Map，现在再补充100个元素进去，这个补充操作由10个线程并发进行。
+ * 在每一个线程的代码逻辑中先通过size方法拿到当前元素数量，
+ * 计算 ConcurrentHashMap目前还需要补充多少元素，并在日志
+ * 中输出了这个值，然后通过putAll方法把缺少的元素添加进去。
  * @author lucifer.chan
  * @create 2022-06-16 5:45 PM
  **/
