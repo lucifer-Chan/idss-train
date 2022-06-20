@@ -54,7 +54,10 @@ public class BatchUtilTest {
     public JSONObject batch() {
         BatchUtil batchUtil = new BatchUtil(1000);
         long start = System.currentTimeMillis();
-        int sum = batchUtil.execute(list, this::square).stream()
+
+        List<BatchResult<Integer>> results = batchUtil.execute(list, this::square);
+
+        int sum = results.stream()
                 .filter(BatchResult::isSuccess)
                 .mapToInt(BatchResult::getResult)
                 .sum();
