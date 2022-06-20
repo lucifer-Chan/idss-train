@@ -8,6 +8,7 @@ import java.util.stream.IntStream;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import static java.util.stream.Collectors.toList;
@@ -51,8 +52,8 @@ public class BatchUtilTest {
      * @return
      */
     @GetMapping("batch")
-    public JSONObject batch() {
-        BatchUtil batchUtil = new BatchUtil(1000);
+    public JSONObject batch(@RequestParam(value = "size", defaultValue = "100") int size) {
+        BatchUtil batchUtil = new BatchUtil(size);
         long start = System.currentTimeMillis();
 
         List<BatchResult<Integer>> results = batchUtil.execute(list, this::square);
