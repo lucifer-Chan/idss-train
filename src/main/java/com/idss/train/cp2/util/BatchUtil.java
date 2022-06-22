@@ -1,10 +1,10 @@
 package com.idss.train.cp2.util;
 
 import java.util.List;
-import java.util.concurrent.ExecutorService;
 import java.util.concurrent.ForkJoinPool;
 import java.util.concurrent.Future;
 import java.util.concurrent.FutureTask;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 import java.util.stream.StreamSupport;
 import lombok.extern.slf4j.Slf4j;
@@ -48,6 +48,13 @@ public class BatchUtil {
                 .collect(toList());
 
         log.info("批量处理任务完成,耗时:[{}]ms", (System.currentTimeMillis() - start));
+
+        try {
+            FORK_JOIN_POOL.shutdown();
+            FORK_JOIN_POOL.awaitTermination(1, TimeUnit.MINUTES);
+        } catch (InterruptedException ignored) {
+
+        }
 
         return result;
     }
