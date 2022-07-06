@@ -84,19 +84,17 @@ public class Cp4Controller {
             TestDictVo.builder().name("name5").intacPort("0000").result(400).build()
     );
 
-    private static DefaultProtocolService defaultProtocolService = new DefaultProtocolService();
-
-
-    private static class DefaultProtocolService implements ProtocolService {
-
-        @Override
-        public String code() {
-            return null;
-        }
+    private static ProtocolService defaultProtocolService = new ProtocolService(){
 
         @Override
         public String apply(String s) {
             return s;
         }
-    }
+
+        @Override
+        public String code() {
+            return null;
+        }
+    };
+
 }
