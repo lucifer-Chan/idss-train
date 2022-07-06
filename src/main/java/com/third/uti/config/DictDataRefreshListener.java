@@ -12,13 +12,11 @@ import org.apache.commons.lang3.concurrent.BasicThreadFactory;
 import org.springframework.boot.context.event.ApplicationStartedEvent;
 import org.springframework.context.ApplicationContext;
 import org.springframework.context.ApplicationListener;
-import org.springframework.stereotype.Service;
 
 /**
  * @author lucifer.chan
  * @create 2022-07-04 1:26 PM
  **/
-@Service
 @Slf4j
 public class DictDataRefreshListener implements ApplicationListener<ApplicationStartedEvent> {
 
